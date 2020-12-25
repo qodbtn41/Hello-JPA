@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,7 @@ public class Order extends BaseEntity {
   @GeneratedValue
   @Column(name = "ORDER_ID")
   private Long id;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "MEMBER_ID")
   private Member member;
   private LocalDateTime orderDate;
@@ -37,7 +38,7 @@ public class Order extends BaseEntity {
   @OneToMany(mappedBy = "order")
   private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   private Delivery delivery;
 
   public void addOrderItem(OrderItem orderItem) {
