@@ -4,11 +4,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
+@AllArgsConstructor
 @Embeddable
 public class Period {
   private LocalDateTime startDate;

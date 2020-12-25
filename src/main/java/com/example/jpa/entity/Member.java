@@ -1,7 +1,5 @@
 package com.example.jpa.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -15,7 +13,6 @@ import javax.persistence.ManyToOne;
 
 import com.example.jpa.type.Address;
 import com.example.jpa.type.Period;
-import com.fasterxml.jackson.core.sym.Name;
 
 import lombok.Getter;
 import lombok.Setter;

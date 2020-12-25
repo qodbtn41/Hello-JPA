@@ -2,11 +2,11 @@ package com.example.jpa.type;
 
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
+@AllArgsConstructor
 @Embeddable
 public class Address {
   private String city;
