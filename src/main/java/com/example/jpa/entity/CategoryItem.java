@@ -14,6 +14,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class CategoryItem implements Serializable {
+  private static final long serialVersionUID = 8220089829885452952L;
   @Id
   @ManyToOne
   @JoinColumn(name = "CATEGORY_ID")
