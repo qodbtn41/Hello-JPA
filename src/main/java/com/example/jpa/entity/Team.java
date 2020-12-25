@@ -3,6 +3,7 @@ package com.example.jpa.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,6 +20,6 @@ public class Team extends BaseEntity {
   @GeneratedValue
   private Long id;
   private String name;
-  @OneToMany(mappedBy = "team") // 멤버쪽에 있는 변수명
+  @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true) // 멤버쪽에 있는 변수명
   private List<Member> members = new ArrayList<Member>();
 }
