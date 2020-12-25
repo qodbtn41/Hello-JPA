@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Team {
+public class Team extends BaseEntity {
   @Id
   @GeneratedValue
   private Long id;

@@ -1,4 +1,4 @@
-package com.example.jpa.entity;
+package com.example.jpa.entity.item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("Album")
-public class Album extends Item {
-  private String artist;
+@DiscriminatorValue("Movie")
+public class Movie extends Item {
+  private String director;
+  private String actor;
 }
