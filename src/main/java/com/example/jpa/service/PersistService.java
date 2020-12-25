@@ -85,7 +85,6 @@ public class PersistService {
       // * 5. commit
       em.flush();
       // !지연 로딩
-      // *
 
       tx.commit();
     } catch (Exception e) {

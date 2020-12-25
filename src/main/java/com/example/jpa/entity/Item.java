@@ -1,6 +1,5 @@
 package com.example.jpa.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,13 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Member {
+public class Item {
   @Id
   @GeneratedValue
-  @Column(name = "MEMBER_ID")
   private Long id;
   private String name;
-  private String city;
-  private String street;
-  private String zipcode;
+  private Integer price;
+  private Integer stockQuantity;
 }
