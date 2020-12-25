@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,4 +22,7 @@ public class Member {
   private String city;
   private String street;
   private String zipcode;
+  @ManyToOne
+  @JoinColumn(name = "TEAM_ID")
+  private Team team;
 }
