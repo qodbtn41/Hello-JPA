@@ -1,12 +1,12 @@
 package com.example.jpa.type;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
@@ -21,4 +21,21 @@ public class Period {
     else
       return false;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Period)) {
+      return false;
+    }
+    Period period = (Period) o;
+    return Objects.equals(startDate, period.getStartDate()) && Objects.equals(endDate, period.getEndDate());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(startDate, endDate);
+  }
+
 }
