@@ -24,7 +24,7 @@ public class Delivery extends BaseEntity {
   @Id
   @GeneratedValue
   @Column(name = "DELIVERY_ID")
-  private String id;
+  private Long id;
 
   @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
   private Order order;
