@@ -1,14 +1,13 @@
-package com.example.jpa.controller;
-
-import org.springframework.web.bind.annotation.RestController;
+package com.example.jpa.web;
 
 import java.util.List;
 
-import com.example.jpa.entity.Member;
+import com.example.jpa.domain.member.Member;
 import com.example.jpa.service.MemberService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/member")

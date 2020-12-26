@@ -1,4 +1,4 @@
-package com.example.jpa.controller;
+package com.example.jpa.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

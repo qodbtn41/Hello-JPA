@@ -2,13 +2,12 @@ package com.example.jpa.demojpa;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.example.jpa.entity.Member;
+import com.example.jpa.domain.member.Member;
 import com.example.jpa.repository.MemberRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest

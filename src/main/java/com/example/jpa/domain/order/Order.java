@@ -1,4 +1,4 @@
-package com.example.jpa.entity;
+package com.example.jpa.domain.order;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.example.jpa.domain.BaseEntity;
+import com.example.jpa.domain.member.Member;
 import com.example.jpa.type.OrderStatus;
 
 import lombok.Getter;

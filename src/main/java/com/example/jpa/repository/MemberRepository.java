@@ -3,7 +3,7 @@ package com.example.jpa.repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.example.jpa.entity.Member;
+import com.example.jpa.domain.member.Member;
 
 import org.springframework.stereotype.Repository;
 

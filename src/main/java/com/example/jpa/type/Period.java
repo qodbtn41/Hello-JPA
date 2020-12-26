@@ -5,10 +5,13 @@ import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor
 @Embeddable
 public class Period {

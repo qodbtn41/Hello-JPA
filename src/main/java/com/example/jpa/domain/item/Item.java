@@ -1,4 +1,4 @@
-package com.example.jpa.entity.item;
+package com.example.jpa.domain.item;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import com.example.jpa.entity.BaseEntity;
+import com.example.jpa.domain.BaseEntity;
 
 import lombok.Getter;
 import lombok.Setter;

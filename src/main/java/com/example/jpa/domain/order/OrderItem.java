@@ -1,4 +1,4 @@
-package com.example.jpa.entity;
+package com.example.jpa.domain.order;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.example.jpa.entity.item.Item;
+import com.example.jpa.domain.BaseEntity;
+import com.example.jpa.domain.item.Item;
 
 import lombok.Getter;
 import lombok.Setter;

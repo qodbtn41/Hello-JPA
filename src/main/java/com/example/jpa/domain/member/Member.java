@@ -1,4 +1,6 @@
-package com.example.jpa.entity;
+package com.example.jpa.domain.member;
+
+import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -10,7 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.example.jpa.domain.BaseEntity;
+import com.example.jpa.domain.order.Order;
 import com.example.jpa.type.Address;
 import com.example.jpa.type.Period;
 
@@ -25,6 +30,7 @@ public class Member extends BaseEntity {
   @GeneratedValue
   @Column(name = "MEMBER_ID")
   private Long id;
+
   private String name;
 
   @Embedded
@@ -45,4 +51,7 @@ public class Member extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "TEAM_ID")
   private Team team;
+
+  @OneToMany(mappedBy = "member")
+  private List<Order> orders;
 }

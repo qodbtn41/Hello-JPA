@@ -1,4 +1,4 @@
-package com.example.jpa.entity.item;
+package com.example.jpa.domain.item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
