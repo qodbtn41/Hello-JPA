@@ -5,16 +5,15 @@ spring:
     password: SUCCESS
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform:
-    database: mysql
-    generate-ddl: true
-    open-in-view: false
-    show-sql: true
+    # database: mysql
+    # generate-ddl: true
+    # open-in-view: false
+    # show-sql: true
     hibernate:
       ddl-auto: create
-      naming:
-        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      # naming:
+      #   implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      #   physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     properties:
       hibernate:
         # show_sql: true
@@ -22,11 +21,8 @@ spring:
         "[use_sql_comments]": true
         "[enable_lazy_load_no_trans]": true
         "[default_batch_fetch_size]": 100
-        hbm2ddl:
-          auto: create
-        jdbc:
-          "[batch_size]": 10
 logging:
   level:
+    root: info
     "[org.hibernate.SQL]": debug
-    "[org.hibernate.type]": trace
+    # "[org.hibernate.type]": trace

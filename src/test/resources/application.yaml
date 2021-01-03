@@ -11,7 +11,7 @@
 #     open-in-view: false
 #     show-sql: true
 #     hibernate:
-#       # ddl-auto: create
+#       ddl-auto: create
 #       naming:
 #         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 #         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
@@ -22,10 +22,6 @@
 #         "[use_sql_comments]": true
 #         "[enable_lazy_load_no_trans]": true
 #         "[default_batch_fetch_size]": 100
-#         # hbm2ddl:
-#         #   auto: create
-#         jdbc:
-#           "[batch_size]": 10
 logging:
   level:
     "[org.hibernate.SQL]": debug
