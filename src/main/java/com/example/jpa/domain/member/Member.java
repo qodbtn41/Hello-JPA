@@ -32,7 +32,6 @@ public class Member extends BaseEntity {
   @Column(name = "MEMBER_ID")
   private Long id;
 
-  @NotEmpty
   private String name;
 
   @Embedded
