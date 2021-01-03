@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotEmpty;
 
 import com.example.jpa.domain.BaseEntity;
 import com.example.jpa.domain.order.Order;

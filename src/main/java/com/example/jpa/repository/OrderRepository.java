@@ -30,4 +30,9 @@ public class OrderRepository {
         .setParameter("status", orderSearch.getOrderStatus()).setParameter("name", orderSearch.getMemberName())
         .setMaxResults(1000).getResultList();
   }
+
+  public List<Order> findOrderWithMemberAndDelivery() {
+    return em.createQuery("SELECT o FROM Order o join fetch o.member m join fetch o.delivery d", Order.class)
+        .getResultList();
+  }
 }
