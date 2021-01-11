@@ -1,7 +1,5 @@
 package com.example.jpa.demojpa;
 
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import com.example.jpa.domain.member.Member;

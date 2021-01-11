@@ -19,12 +19,17 @@ import com.example.jpa.domain.order.Order;
 import com.example.jpa.type.Address;
 import com.example.jpa.type.Period;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(of = { "id", "name" })
 public class Member extends BaseEntity {
   @Id
   @GeneratedValue
@@ -54,4 +59,13 @@ public class Member extends BaseEntity {
 
   @OneToMany(mappedBy = "member")
   private List<Order> orders;
+
+  public Member(String name) {
+    this.name = name;
+  }
+
+  public void changeTeam(Team team) {
+    this.team = team;
+    team.getMembers().add(this);
+  }
 }
