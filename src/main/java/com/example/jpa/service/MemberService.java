@@ -3,7 +3,7 @@ package com.example.jpa.service;
 import java.util.List;
 
 import com.example.jpa.domain.member.Member;
-import com.example.jpa.repository.MemberRepository;
+import com.example.jpa.repository.MemberJpaRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberService {
-  private final MemberRepository memberRepository;
+  private final MemberJpaRepository memberRepository;
 
   /**
    * 회원 가입

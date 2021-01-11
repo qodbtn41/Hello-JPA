@@ -8,7 +8,7 @@ import com.example.jpa.domain.order.Delivery;
 import com.example.jpa.domain.order.Order;
 import com.example.jpa.domain.order.OrderItem;
 import com.example.jpa.repository.ItemRepository;
-import com.example.jpa.repository.MemberRepository;
+import com.example.jpa.repository.MemberJpaRepository;
 import com.example.jpa.repository.OrderRepository;
 import com.example.jpa.repository.OrderSearch;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
   private final OrderRepository orderRepository;
-  private final MemberRepository memberRepository;
+  private final MemberJpaRepository memberRepository;
   private final ItemRepository itemRepository;
 
   /**

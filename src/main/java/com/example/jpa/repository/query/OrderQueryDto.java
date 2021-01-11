@@ -1,12 +1,6 @@
 package com.example.jpa.repository.query;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.jpa.domain.member.Member;
-import com.example.jpa.domain.order.Delivery;
-import com.example.jpa.domain.order.OrderItem;
 import com.example.jpa.type.Address;
 import com.example.jpa.type.OrderStatus;
 

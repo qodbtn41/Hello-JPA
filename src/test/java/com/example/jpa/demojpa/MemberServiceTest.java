@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import com.example.jpa.domain.member.Member;
-import com.example.jpa.repository.MemberRepository;
+import com.example.jpa.repository.MemberJpaRepository;
 import com.example.jpa.service.MemberService;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class MemberServiceTest {
   @Autowired
   MemberService memberService;
   @Autowired
-  MemberRepository memberRepository;
+  MemberJpaRepository memberRepository;
   @Autowired
   EntityManager em;
 
