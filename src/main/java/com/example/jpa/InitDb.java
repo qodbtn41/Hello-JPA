@@ -25,8 +25,8 @@ public class InitDb {
 
   @PostConstruct
   public void init() {
-    initService.dbInit1();
-    initService.dbInit2();
+    // initService.dbInit1();
+    // initService.dbInit2();
   }
 
   @Component
@@ -72,7 +72,7 @@ public class InitDb {
     }
 
     private Member createMember(String name, String city, String street, String zipcode) {
-      Member member = new Member();
+      Member member = new Member(name);
       member.setName(name);
       member.setHomeAddress(new Address(city, street, zipcode));
       return member;

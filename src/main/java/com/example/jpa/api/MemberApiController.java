@@ -42,7 +42,7 @@ public class MemberApiController {
 
   @PostMapping("api/v2/members")
   public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
-    Member member = new Member();
+    Member member = new Member(request.getName());
     member.setName(request.getName());
 
     Long id = memberService.join(member);

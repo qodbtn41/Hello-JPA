@@ -1,6 +1,7 @@
 package com.example.jpa.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import com.example.jpa.domain.member.Member;
@@ -17,6 +18,10 @@ public class MemberJpaRepository {
     return member.getId();
   }
 
+  public void delete(Member member) {
+    em.remove(member);
+  }
+
   public Member findOne(Long id) {
     return em.find(Member.class, id);
   }
@@ -28,5 +33,14 @@ public class MemberJpaRepository {
   public List<Member> findByName(String name) {
     return em.createQuery("SELECT m FROM Member m WHERE m.name = :name", Member.class).setParameter("name", name)
         .getResultList();
+  }
+
+  public Optional<Member> findById(Long id) {
+    Member member = em.find(Member.class, id);
+    return Optional.ofNullable(member);
+  }
+
+  public long count() {
+    return em.createQuery("select count(m) from Member m", Long.class).getSingleResult();
   }
 }

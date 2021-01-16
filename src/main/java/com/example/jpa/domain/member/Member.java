@@ -38,6 +38,8 @@ public class Member extends BaseEntity {
 
   private String name;
 
+  private int age;
+
   @Embedded
   private Period period;
 
@@ -64,8 +66,20 @@ public class Member extends BaseEntity {
     this.name = name;
   }
 
+  public Member(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public Member(String name, int age, Team team) {
+    this.name = name;
+    this.age = age;
+    changeTeam(team);
+  }
+
   public void changeTeam(Team team) {
     this.team = team;
     team.getMembers().add(this);
   }
+
 }

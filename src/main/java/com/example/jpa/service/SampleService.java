@@ -22,9 +22,8 @@ public class SampleService {
 
     try {
       // 비영속
-      Member member = new Member();
+      Member member = new Member("name2");
       member.setId(100L);
-      member.setName("name2");
 
       // !영속
       // *BEFORE 과 AFTER 사이에 INSERT 쿼리가 실행되지 않는다.
