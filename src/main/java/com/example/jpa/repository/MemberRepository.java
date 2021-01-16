@@ -2,6 +2,7 @@ package com.example.jpa.repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.jpa.domain.member.Member;
 import com.example.jpa.dto.MemberDto;
@@ -12,7 +13,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-  List<Member> findByName(String name);
+  List<Member> findListByName(String name);
+
+  Member findOneByName(String name);
+
+  Optional<Member> findOptionalByName(String name);
 
   List<Member> findByNameAndAgeGreaterThan(String name, int age);
 
