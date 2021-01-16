@@ -1,5 +1,6 @@
 package com.example.jpa.repository;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.example.jpa.domain.member.Member;
@@ -7,6 +8,7 @@ import com.example.jpa.dto.MemberDto;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
@@ -25,4 +27,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
   @Query("select new com.example.jpa.dto.MemberDto(m.id, m.name, t.name) from Member m join m.team t")
   List<MemberDto> findMemberDto();
+
+  @Query("select m from Member m where m.name = :name")
+  List<Member> find___ByName(@Param("name") String username);
+
+  @Query("select m from Member m where m.name in :names")
+  List<Member> findByNames(@Param("names") Collection<String> names);
 }

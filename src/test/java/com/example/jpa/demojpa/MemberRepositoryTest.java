@@ -2,6 +2,7 @@ package com.example.jpa.demojpa;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -57,6 +58,20 @@ public class MemberRepositoryTest {
     List<MemberDto> findMembers = memberRepository.findMemberDto();
 
     for (MemberDto m : findMembers) {
+      System.out.println("member = " + m);
+    }
+  }
+
+  @Test
+  public void findByNames() {
+    Member member1 = new Member("member1", 10);
+    Member member2 = new Member("member2", 20);
+    memberRepository.save(member1);
+    memberRepository.save(member2);
+
+    List<Member> findMembers = memberRepository.findByNames(Arrays.asList("member1", "member2"));
+
+    for (Member m : findMembers) {
       System.out.println("member = " + m);
     }
   }
