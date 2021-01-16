@@ -195,4 +195,17 @@ public class MemberRepositoryTest {
     em.flush();
   }
 
+  @Test
+  public void findCustom() {
+    Member member1 = new Member("member1", 10);
+    Member member2 = new Member("member2", 20);
+    memberRepository.save(member1);
+    memberRepository.save(member2);
+
+    List<Member> findMembers = memberRepository.findMemberCustom();
+
+    for (Member m : findMembers) {
+      System.out.println("member = " + m);
+    }
+  }
 }
