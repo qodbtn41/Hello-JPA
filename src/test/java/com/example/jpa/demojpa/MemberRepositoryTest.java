@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import com.example.jpa.domain.member.Member;
@@ -30,6 +31,8 @@ public class MemberRepositoryTest {
   MemberRepository memberRepository;
   @Autowired
   TeamRepository teamRepository;
+  @Autowired
+  EntityManager em;
 
   @Test
   public void testMember() {
@@ -119,4 +122,49 @@ public class MemberRepositoryTest {
 
     assertEquals(3, page.getSize());
   }
+
+  @Test
+  public void bulkUpdate() {
+    Member member1 = new Member("member1", 10);
+    Member member2 = new Member("member2", 19);
+    Member member3 = new Member("member3", 20);
+    Member member4 = new Member("member4", 21);
+    Member member5 = new Member("member5", 40);
+    memberRepository.save(member1);
+    memberRepository.save(member2);
+    memberRepository.save(member3);
+    memberRepository.save(member4);
+    memberRepository.save(member5);
+
+    int resultCount = memberRepository.bulkAgePlus(20);
+
+    Member result = memberRepository.findOneByName("member5");
+    System.out.println("member5 = " + result);
+
+    assertEquals(3, resultCount);
+  }
+
+  @Test
+  public void findMemberlazy() {
+    Team teamA = new Team("Team A");
+    Team teamB = new Team("Team B");
+    teamRepository.save(teamA);
+    teamRepository.save(teamB);
+
+    Member member1 = new Member("member1", 10, teamA);
+    Member member3 = new Member("member3", 30, teamB);
+    memberRepository.save(member1);
+    memberRepository.save(member3);
+
+    em.flush();
+    em.clear();
+
+    List<Member> findMembers = memberRepository.findMemberFetchJoin();
+
+    for (Member m : findMembers) {
+      System.out.println("member = " + m);
+      System.out.println("-> member.team = " + m.getTeam());
+    }
+  }
+
 }

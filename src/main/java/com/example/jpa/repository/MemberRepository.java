@@ -9,7 +9,9 @@ import com.example.jpa.dto.MemberDto;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -45,4 +47,23 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   Page<Member> findSortAndPage(@Param("age") int age, Pageable paging);
 
   List<Member> findTop3By();
+
+  @Modifying(clearAutomatically = true)
+  @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
+  int bulkAgePlus(@Param("age") int age);
+
+  @Override
+  @EntityGraph(attributePaths = { "team" })
+  List<Member> findAll();
+
+  @Query("select m from Member m fetch join m.team")
+  List<Member> findMemberFetchJoin();
+
+  @EntityGraph(attributePaths = { "team" })
+  @Query("select m from Member m")
+  List<Member> findMemberFetchJoinByEntityGraph();
+
+  @EntityGraph("Member.all")
+  @Query("select m from Member m")
+  List<Member> findMemberFetchJoinByNamedEntityGraph();
 }
