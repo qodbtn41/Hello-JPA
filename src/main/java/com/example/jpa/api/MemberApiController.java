@@ -3,12 +3,17 @@ package com.example.jpa.api;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 import com.example.jpa.domain.member.Member;
+import com.example.jpa.dto.MemberDto;
+import com.example.jpa.repository.MemberRepository;
 import com.example.jpa.service.MemberService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +29,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberApiController {
   private final MemberService memberService;
+  private final MemberRepository memberRepository;
 
   @GetMapping("api/v1/members")
   public Result<MemberDto> getMemberV2() {
     List<Member> members = memberService.findMembers();
-    List<MemberDto> collect = members.stream().map(member -> new MemberDto(member.getName()))
+    List<MemberDto> collect = members.stream().map(member -> new MemberDto(member)
         .collect(Collectors.toList());
 
     return new Result<MemberDto>(collect);
@@ -66,12 +72,6 @@ public class MemberApiController {
 
   @Data
   @AllArgsConstructor
-  static class MemberDto {
-    private String name;
-  }
-
-  @Data
-  @AllArgsConstructor
   static class UpdateMemberResponse {
     private Long id;
     private String name;
@@ -95,5 +95,29 @@ public class MemberApiController {
     }
 
     private Long id;
+  }
+
+  @GetMapping("/api/members/v1/{id}")
+  public String findMember(@PathVariable("id") Long id) {
+    Member member = memberService.findMember(id);
+    return member.getName();
+  }
+
+  @GetMapping("/api/members/v2/{id}")
+  public String findMember(@PathVariable("id") Member member) {
+    return member.getName();
+  }
+
+  @GetMapping("/api/members")
+  public Page<MemberDto> list(Pageable pageable) {
+    Page<Member> page = memberRepository.findAll(pageable);
+    return page.map(MemberDto::new);
+  }
+
+  @PostConstruct
+  public void init() {
+    for (int i = 0; i < 100; i++) {
+      memberRepository.save(new Member("member" + (i + 1)));
+    }
   }
 }
