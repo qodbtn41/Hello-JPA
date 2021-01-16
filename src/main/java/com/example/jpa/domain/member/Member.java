@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import com.example.jpa.domain.BaseEntity;
@@ -30,6 +31,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = { "id", "name" })
+@NamedQuery(name = "Member.findByAge", query = "select m from Member m where age = :age")
 public class Member extends BaseEntity {
   @Id
   @GeneratedValue
