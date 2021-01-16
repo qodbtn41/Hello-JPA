@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.LockModeType;
+import javax.persistence.QueryHint;
+
 import com.example.jpa.domain.member.Member;
 import com.example.jpa.dto.MemberDto;
 
@@ -11,8 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
@@ -56,7 +61,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   @EntityGraph(attributePaths = { "team" })
   List<Member> findAll();
 
-  @Query("select m from Member m fetch join m.team")
+  @Query("select m from Member m join fetch m.team")
   List<Member> findMemberFetchJoin();
 
   @EntityGraph(attributePaths = { "team" })
@@ -66,4 +71,12 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   @EntityGraph("Member.all")
   @Query("select m from Member m")
   List<Member> findMemberFetchJoinByNamedEntityGraph();
+
+  @QueryHints(value = { @QueryHint(name = "org.hibernate.readOnly", value = "true") })
+  @Query("select m from Member m where m.name = :name")
+  Member findReadOnlyByName(@Param("name") String name);
+
+  @Lock(LockModeType.PESSIMISTIC_WRITE)
+  @Query("select m from Member m where m.name = :name")
+  List<Member> findLockByName(@Param("name") String name);
 }
