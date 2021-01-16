@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 
 import com.example.jpa.domain.member.Member;
 import com.example.jpa.domain.member.Team;
-import com.example.jpa.repository.MemberRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

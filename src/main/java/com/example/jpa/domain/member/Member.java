@@ -31,7 +31,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = { "id", "name" })
-@NamedQuery(name = "Member.findByAge", query = "select m from Member m where age = :age")
+@NamedQuery(name = "Member.findByAge", query = "select m from Member m where m.age = :age")
 public class Member extends BaseEntity {
   @Id
   @GeneratedValue
