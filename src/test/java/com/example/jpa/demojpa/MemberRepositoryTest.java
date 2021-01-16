@@ -102,6 +102,11 @@ public class MemberRepositoryTest {
       System.out.println("member = " + m);
     }
 
+    Page<MemberDto> pageDto = page.map(member -> new MemberDto(member.getId(), member.getName(), null));
+    for (MemberDto m : pageDto.getContent()) {
+      System.out.println("memberDto = " + m);
+    }
+
     assertEquals(3, content.size()); // 조회 개수
     assertEquals(5, page.getTotalElements()); // 총 개수
     assertEquals(0, page.getNumber()); // 페이징 번호
