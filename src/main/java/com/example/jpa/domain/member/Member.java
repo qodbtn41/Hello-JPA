@@ -16,6 +16,7 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.example.jpa.domain.BaseEntity;
 import com.example.jpa.domain.order.Order;
@@ -32,7 +33,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = { "id", "name" })
+@ToString(of = { "id", "name", "age" })
 @NamedQuery(name = "Member.findByAge", query = "select m from Member m where m.age = :age")
 @NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
 public class Member extends BaseEntity {
