@@ -9,6 +9,8 @@ import com.example.jpa.domain.member.QMember;
 import com.example.jpa.repository.MemberRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +23,13 @@ public class MemberTest {
   MemberRepository memberRepository;
   @Autowired
   EntityManager em;
+
+  JPAQueryFactory queryFactory;
+
+  @BeforeEach
+  public void before() {
+    queryFactory = new JPAQueryFactory(em);
+  }
 
   @Test
   public void JpaEventBaseEntity() throws Exception {
@@ -51,10 +60,8 @@ public class MemberTest {
 
   @Test
   public void startQuerydsl() {
-    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-    QMember m = new QMember("m");
-
-    Member findMember = queryFactory.select(m).from(m).where(m.name.eq("userA")).fetchOne();
+    Member findMember = queryFactory.select(QMember.member).from(QMember.member).where(QMember.member.name.eq("userA"))
+        .fetchOne();
 
     assertEquals("userA", findMember.getName());
   }
