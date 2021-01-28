@@ -1,9 +1,13 @@
 package com.example.jpa.demojpa.entity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.persistence.EntityManager;
 
 import com.example.jpa.domain.member.Member;
+import com.example.jpa.domain.member.QMember;
 import com.example.jpa.repository.MemberRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +39,23 @@ public class MemberTest {
     System.out.println("findMember.lastModifiedTime = " + findMember.getLastModifiedTime());
     System.out.println("findMember.createdBy = " + findMember.getLastModifiedBy());
     System.out.println("findMember.lastModifiedBy = " + findMember.getLastModifiedBy());
+  }
+
+  @Test
+  public void startJPQL() {
+    Member findByJPQL = em.createQuery("select m from Member m where m.name = :name", Member.class)
+        .setParameter("name", "userA").getSingleResult();
+
+    assertEquals("userA", findByJPQL.getName());
+  }
+
+  @Test
+  public void startQuerydsl() {
+    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+    QMember m = new QMember("m");
+
+    Member findMember = queryFactory.select(m).from(m).where(m.name.eq("userA")).fetchOne();
+
+    assertEquals("userA", findMember.getName());
   }
 }

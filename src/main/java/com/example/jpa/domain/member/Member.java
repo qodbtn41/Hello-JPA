@@ -16,8 +16,6 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.example.jpa.domain.BaseEntity;
 import com.example.jpa.domain.order.Order;
 import com.example.jpa.type.Address;
