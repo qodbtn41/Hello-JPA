@@ -2,6 +2,8 @@ package com.example.jpa.demojpa.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import com.example.jpa.domain.member.Member;
@@ -60,6 +62,13 @@ public class MemberTest {
 
   @Test
   public void startQuerydsl() {
+    List<Member> findMember = queryFactory.select(QMember.member).from(QMember.member).fetch();
+
+    assertEquals("userA", findMember.get(0).getName());
+  }
+
+  @Test
+  public void search() {
     Member findMember = queryFactory.select(QMember.member).from(QMember.member).where(QMember.member.name.eq("userA"))
         .fetchOne();
 
