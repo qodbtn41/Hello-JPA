@@ -40,5 +40,4 @@ public class Period {
   public int hashCode() {
     return Objects.hash(startDate, endDate);
   }
-
 }

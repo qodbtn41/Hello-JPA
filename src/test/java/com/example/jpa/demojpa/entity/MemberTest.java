@@ -74,4 +74,13 @@ public class MemberTest {
 
     assertEquals("userA", findMember.getName());
   }
+
+  @Test
+  public void search2() {
+    Member findMember = queryFactory.selectFrom(QMember.member)
+        .where(QMember.member.name.eq("userA").and(QMember.member.age.eq(10))).fetchOne();
+
+    assertEquals("userA", findMember.getName());
+    assertEquals(10, findMember.getAge());
+  }
 }
