@@ -1,6 +1,7 @@
 package com.example.jpa.demojpa.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -92,5 +93,25 @@ public class MemberTest {
 
     assertEquals("userA", findMember.getName());
     assertEquals(10, findMember.getAge());
+  }
+
+  /**
+   * 화원 나이 내림차순(desc) 회원 이름 올림차순(asc) 단 2에서 회원 이름이 없으면 마지막에 출력(nulls last)
+   */
+  @Test
+  public void sort() {
+    em.persist(new Member(null, 100));
+    em.persist(new Member("member5", 100));
+    em.persist(new Member("member6", 100));
+
+    List<Member> result = queryFactory.selectFrom(QMember.member).where(QMember.member.age.eq(100))
+        .orderBy(QMember.member.age.desc(), QMember.member.name.asc().nullsLast()).fetch();
+
+    Member member5 = result.get(0);
+    Member member6 = result.get(1);
+    Member memberNull = result.get(2);
+    assertEquals("member5", member5.getName());
+    assertEquals("member6", member6.getName());
+    assertNull(memberNull.getName());
   }
 }
