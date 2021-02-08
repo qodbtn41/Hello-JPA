@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import com.example.jpa.domain.member.Member;
 import com.example.jpa.domain.member.QMember;
 import com.example.jpa.repository.MemberRepository;
+import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import org.aspectj.lang.annotation.Before;
@@ -113,5 +114,24 @@ public class MemberTest {
     assertEquals("member5", member5.getName());
     assertEquals("member6", member6.getName());
     assertNull(memberNull.getName());
+  }
+
+  @Test
+  public void paging1() {
+    QMember member = QMember.member;
+    List<Member> result = queryFactory.selectFrom(member).orderBy(member.name.desc()).offset(1).limit(2).fetch();
+  }
+
+  @Test
+  public void paging2() {
+    // 전체 조회수가 필요하면?
+    QMember member = QMember.member;
+    QueryResults<Member> result = queryFactory.selectFrom(member).orderBy(member.name.desc()).offset(1).limit(2)
+        .fetchResults();
+
+    assertEquals(4, result.getTotal());
+    assertEquals(2, result.getLimit());
+    assertEquals(1, result.getOffset());
+    assertEquals(2, result.getResults().size());
   }
 }
