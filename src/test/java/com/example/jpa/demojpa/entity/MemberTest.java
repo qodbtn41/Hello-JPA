@@ -83,4 +83,14 @@ public class MemberTest {
     assertEquals("userA", findMember.getName());
     assertEquals(10, findMember.getAge());
   }
+
+  @Test
+  public void searchAndParam() {
+    // null을 무시하기 때문에 동적 쿼리할 때 활용 가능하다.
+    Member findMember = queryFactory.selectFrom(QMember.member)
+        .where(QMember.member.name.eq("userA"), (QMember.member.age.eq(10)), null).fetchOne();
+
+    assertEquals("userA", findMember.getName());
+    assertEquals(10, findMember.getAge());
+  }
 }
